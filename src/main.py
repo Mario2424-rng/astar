@@ -2,18 +2,21 @@
 
 import sys 
 import pygame 
+import field
 import display 
 
 class App:
 
     def __init__(self):
         self.disp = display.Display(600, 600, 60)
+        self.field = field.Field()
         self.main()
-
+        
     def main(self):
         while True: 
             self.disp.clear() 
             self.event_handler() 
+            self.field.draw(self.disp.get_screen())
             self.disp.update()
 
     def event_handler(self):

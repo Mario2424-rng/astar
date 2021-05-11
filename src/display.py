@@ -15,3 +15,6 @@ class Display:
     def update(self):
         pygame.display.update() 
         self.clock.tick(self.fps)
+
+    def get_screen(self):
+        return self.win
