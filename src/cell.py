@@ -10,6 +10,12 @@ class Cell:
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, self.rect)
 
+    def collide(self, x, y):
+        if self.rect.collidepoint(x, y):
+            return True 
+        else: 
+            return False 
+
     def __str__(self):
         return f"{self.x} {self.y}"
 

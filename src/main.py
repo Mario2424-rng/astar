@@ -23,6 +23,13 @@ class App:
         for e in pygame.event.get():
             if e.type == pygame.QUIT or e.type == pygame.KEYDOWN and e.key == pygame.K_x:
                 sys.exit()
+            if e.type == pygame.MOUSEBUTTONDOWN:
+                if pygame.mouse.get_pressed() == (1, 0, 0): 
+                    mouse_pos = pygame.mouse.get_pos()
+                    for row in self.field.cells:
+                        for cell in row:
+                            if cell.collide(*mouse_pos):
+                                print(cell.rect.x, cell.rect.y)
             
 if __name__ == '__main__':
     App()
