@@ -28,9 +28,17 @@ class App:
                     mouse_pos = pygame.mouse.get_pos()
                     for row in self.field.cells:
                         for cell in row:
-                            if cell.collide(*mouse_pos):
-                                cell.color = (255, 0, 0)
-                                print("collision!")
-                                           
+                            if cell.collide(*mouse_pos): 
+                                cell.is_start_node = True 
+                                cell.color = (0, 0, 255)
+                    for row in self.field.cells:
+                        for cell in row:
+                            if cell.is_start_node:
+                                pass
+                            else:
+                                cell.calculate_g_cost(self.field.grid)
+                if pygame,mouse.get_pressed() == (0, 1, 0): 
+                    pass 
+                    
 if __name__ == '__main__':
     App()

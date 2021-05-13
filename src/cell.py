@@ -5,20 +5,16 @@ class Cell:
 
     color = (255, 255, 255)
 
-    def __init__(self, x, y, is_starting_node):
+    def __init__(self, x, y):
         self.rect = pygame.Rect(x, y, 30, 30)
         self.g_cost = 0
         self.h_cost = 0 
-        self.f_cost = self.g_cost + self.h_cost
-        self.is_starting_node = is_starting_node
-        if self.is_starting_node:
-            self.color = (0, 0, 255) 
-        self.is_end_node = False 
+        self.f_cost = self.g_cost + self.h_cost 
 
-    def calculate_g_cost(self, grid):
+    def calculate_g_cost(self, start_node):
         self.g_cost = math.sqrt((self.rect.x - grid[0][0].rect.x)**2 + (self.rect.y - grid[0][0].rect.y))
 
-    def calculate_h_cost(self, grid):
+    def calculate_h_cost(self, end_node):
         pass 
 
     def draw(self, screen):
