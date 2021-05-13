@@ -29,7 +29,8 @@ class App:
                     for row in self.field.cells:
                         for cell in row:
                             if cell.collide(*mouse_pos):
-                                print(cell.rect.x, cell.rect.y)
-            
+                                cell.color = (255, 0, 0)
+                                print("collision!")
+                                           
 if __name__ == '__main__':
     App()
