@@ -8,9 +8,14 @@ class Field:
         for x in range(0, 601, 30):
             temp_list = []
             for y in range(0, 601, 30):
-                temp_list.append(cell.Cell(x, y))
+                if x == 0 and y == 0: 
+                    temp_list.append(cell.Cell(x, y, True))
+                else: 
+                    temp_list.append(cell.Cell(x, y, False))
             self.cells.append(temp_list) 
-        print(self.cells)
+        for row in self.cells:
+            for col in row:
+                col.calculate_g_cost(self.cells) 
 
     def draw(self, screen):
         for row in self.cells:
