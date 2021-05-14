@@ -29,14 +29,15 @@ class App:
                     for row in self.field.cells:
                         for cell in row:
                             if cell.collide(*mouse_pos): 
+                                start_node = cell 
                                 cell.is_start_node = True 
                                 cell.color = (0, 0, 255)
-                    for row in self.field.cells:
-                        for cell in row:
-                            if cell.is_start_node:
-                                pass
-                            else:
-                                cell.calculate_g_cost(self.field.grid)
+                        for row in self.field.cells:
+                            for cell in row:
+                                if cell.is_start_node or cell.is_end_node:
+                                    pass
+                                else:
+                                    cell.calculate_g_cost(start_node)
                 if pygame,mouse.get_pressed() == (0, 1, 0): 
                     pass 
                     
