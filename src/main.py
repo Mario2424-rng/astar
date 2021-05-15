@@ -2,21 +2,21 @@
 
 import sys 
 import pygame 
-import field
+import grid
 import display 
 
 class App:
 
     def __init__(self):
         self.disp = display.Display(600, 600, 60)
-        self.field = field.Field()
+        self.grid = grid.Grid()
         self.main()
         
     def main(self):
         while True: 
             self.disp.clear() 
             self.event_handler() 
-            self.field.draw(self.disp.get_screen())
+            self.grid.draw(self.disp.get_screen())
             self.disp.update()
 
     def event_handler(self):
@@ -25,20 +25,23 @@ class App:
                 sys.exit()
             if e.type == pygame.MOUSEBUTTONDOWN:
                 if pygame.mouse.get_pressed() == (1, 0, 0): 
-                    mouse_pos = pygame.mouse.get_pos()
-                    for row in self.field.cells:
-                        for cell in row:
-                            if cell.collide(*mouse_pos): 
-                                start_node = cell 
-                                cell.is_start_node = True 
-                                cell.color = (0, 0, 255)
-                        for row in self.field.cells:
-                            for cell in row:
-                                if cell.is_start_node or cell.is_end_node:
-                                    pass
-                                else:
-                                    cell.calculate_g_cost(start_node)
-                if pygame,mouse.get_pressed() == (0, 1, 0): 
+                    if self.grid.already_has_start_node:
+                        pass
+                    else:
+                        mouse_pos = pygame.mouse.get_pos()
+                        self.grid.already_has_start_node = True 
+                        for row in self.grid.nodes:
+                            for node in row:
+                                if node.collide(*mouse_pos): 
+                                    node.is_start_node = True 
+                                    node.color = (0, 0, 255)
+                                    for row in self.grid.nodes:
+                                        for node in row:
+                                            if node.is_start_node or node.is_end_node:
+                                                pass
+                                            else:
+                                                node.calculate_g_cost(node)
+                if pygame.mouse.get_pressed() == (0, 1, 0): 
                     pass 
                     
 if __name__ == '__main__':
