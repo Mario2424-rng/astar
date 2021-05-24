@@ -7,8 +7,8 @@ class Node:
 
     def __init__(self, x, y):
         self.rect = pygame.Rect(x, y, 30, 30)
-        self.is_start_node = False 
-        self.is_end_node = False 
+        self.is_start = False 
+        self.is_end = False 
         self.g_cost = 0
         self.h_cost = 0 
         self.f_cost = self.g_cost + self.h_cost 
