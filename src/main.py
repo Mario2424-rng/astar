@@ -47,18 +47,17 @@ class App:
             if e.type == pygame.KEYDOWN:
                 if e.key == pygame.K_x:
                     sys.exit()
-                if e.key == pygame.K_s:
-                    print("lol")
             if e.type == pygame.MOUSEBUTTONDOWN:
                 if pygame.mouse.get_pressed() == (1, 0, 0): 
                     if self.grid.already_has_start_node:
                         pass
                     else:
                         if self.check_mouse_collision(pygame.mouse.get_pos(), "start"): 
-                            print("lololololollololololo")
                             self.grid.already_has_start_node = True 
                             self.calculate_cells("g_cost")
-                if pygame.mouse.get_pressed() == (0, 1, 0): 
+                         
+                if pygame.mouse.get_pressed() == (0, 0, 1): 
+                    print("lmao")
                     if self.grid.already_has_end_node:
                         pass
                     else:
